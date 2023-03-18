@@ -11,6 +11,8 @@ public enum SorteCartes {
 
     TREFLE('♣', Color.BLACK);
 
+    public char symbole;
+
     SorteCartes(char symbole, Color couleur) {
     }
 }

@@ -22,6 +22,8 @@ public class Pile {
 
         sommet = sommet.getPrecedent();
 
+        taille--;
+
         return popped;
     }
 

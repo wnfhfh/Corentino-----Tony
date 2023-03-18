@@ -24,8 +24,6 @@ public class Carte implements Comparable {
 
     public char getSorteSymbole() {
         return sorte.symbole;
-
-        //TODO faire retourner le symbole dans l'enum, probable ecrire un get
     }
 
     public ValeurCartes getValeur() {
@@ -34,8 +32,6 @@ public class Carte implements Comparable {
 
     public String getValeurSymbole() {
         return valeur.symbole;
-
-        //TODO faire retourner le symbole dans l'enum, probable ecrire un get
     }
 
     public void setSorte(SorteCartes sorte) {
