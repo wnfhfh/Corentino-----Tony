@@ -1,5 +1,6 @@
 package cartes;
 
+import exceptions.PiocheException;
 import structures.pile.Pile;
 
 public class Pioche {
@@ -12,6 +13,7 @@ public class Pioche {
     }
 
     public Carte piger() {
+
         return (Carte) pioche.pop();
     }
 
@@ -19,8 +21,11 @@ public class Pioche {
         return pioche.empty();
     }
 
-    public String consulterDessus() {
-        return ((Carte) pioche.peek()).toStringCarte();
+    public String consulterDessus() throws PiocheException {
+        if (!pioche.empty() && !(pioche.peek() == null)) {
+            return ((Carte) pioche.peek()).toStringCarte();
+        }
+        throw new PiocheException("Guess what? Ca chie.");
     }
 
     public int size() {

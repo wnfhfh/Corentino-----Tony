@@ -1,17 +1,22 @@
 package cartes;
 
+import exceptions.ConstructeurException;
+
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Stack;
 
 public class Carte implements Comparable {
-    public final char IMAGE_DOS = 's';
+    public final char IMAGE_DOS = '☺';
     SorteCartes sorte;
     ValeurCartes valeur;
     private boolean visible;
 
-    public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) throws exceptions.ConstructeurException {
+    public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) throws ConstructeurException {
 
+        if (valeur == null || sorte == null){throw new ConstructeurException("Ça chie ben raide");}
+        this.valeur = valeur;
+        this.sorte = sorte;
     }
 
     public boolean estVisible() {
@@ -32,14 +37,6 @@ public class Carte implements Comparable {
 
     public String getValeurSymbole() {
         return valeur.symbole;
-    }
-
-    public void setSorte(SorteCartes sorte) {
-        this.sorte = sorte;
-    }
-
-    public void setValeur(ValeurCartes valeur) {
-        this.valeur = valeur;
     }
 
     public void setVisible(boolean visible) {
@@ -83,5 +80,9 @@ public class Carte implements Comparable {
     @Override
     public int compareTo(Object o) {
         return this.valeur.compareTo(((Carte) o).getValeur());
+    }
+
+    public static void main(String[] args)  {
+        new Carte(null,null);
     }
 }

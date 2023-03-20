@@ -1,7 +1,8 @@
 package _tests;
 
 
-import org.junit.jupiter.api.Test;
+import exceptions.PileException;
+import org.testng.annotations.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +25,7 @@ class PileTest {
     }
 
     @Test
-    void pop_RetourneLElementDuDessusRetire() {
+    void pop_RetourneLElementDuDessusRetire() throws PileException {
 
         p.push(1);
         p.push(2);

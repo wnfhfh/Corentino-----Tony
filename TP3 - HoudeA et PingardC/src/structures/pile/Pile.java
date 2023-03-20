@@ -1,5 +1,7 @@
 package structures.pile;
 
+import exceptions.PileException;
+
 public class Pile {
     private NoeudPile sommet;
     private int taille = 0;
@@ -17,17 +19,25 @@ public class Pile {
         taille++;
     }
 
-    public Object pop() {
-        Object popped = sommet.getElement();
+    public Object pop() throws PileException {
+        if (empty()){
+            throw new PileException();
+        }
 
-        sommet = sommet.getPrecedent();
+            Object popped = sommet.getElement();
 
-        taille--;
+            sommet = sommet.getPrecedent();
 
-        return popped;
+            taille--;
+
+            return popped;
+
     }
 
-    public Object peek() {
+    public Object peek() throws PileException {
+        if (empty()){
+            throw new PileException();
+        }
         return sommet.getElement();
     }
 

@@ -1,5 +1,7 @@
 package cartes;
 
+import exceptions.ConstructeurException;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,10 +9,21 @@ public class PaquetDeCartes {
     ArrayList<Carte> paquet = new ArrayList<>();
     public final int NBR_ECHANGE = 52;
 
-    public PaquetDeCartes(ArrayList<Carte> cartes) {
+    public PaquetDeCartes(ArrayList<Carte> paquet) throws ConstructeurException {
+        if (paquet == null )
+            throw new ConstructeurException("Ça chie encore");
+        this.paquet = paquet;
     }
 
     public PaquetDeCartes() {
+        ValeurCartes[] valeurCartes = ValeurCartes.values();
+        SorteCartes[] sorteCartes = SorteCartes.values();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                paquet.add(new Carte(valeurCartes[j], sorteCartes[i]));
+            }
+        }
     }
 
     public void melanger() {
