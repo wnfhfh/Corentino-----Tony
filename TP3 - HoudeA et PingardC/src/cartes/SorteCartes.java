@@ -1,19 +1,31 @@
 package cartes;
 
+import application.ColonneCartes;
+
 import java.awt.Color;
 
+import static java.awt.Color.BLACK;
+import static java.awt.Color.RED;
+
 public enum SorteCartes {
-    COEUR('♥', Color.RED),
+    COEUR('♥', RED),
 
-    CARREAU('\u2666', Color.RED),
+    CARREAU('\u2666', RED),
 
-    PIQUE('♠', Color.BLACK),
+    PIQUE('♠', BLACK),
 
-    TREFLE('♣', Color.BLACK);
+    TREFLE('♣', BLACK);
 
     public char symbole;
 
+    public Color couleur;
+
     SorteCartes(char symbole, Color couleur) {
+        this.couleur = couleur;
+    }
+
+    public Color getCouleur() {
+        return couleur;
     }
 }
 

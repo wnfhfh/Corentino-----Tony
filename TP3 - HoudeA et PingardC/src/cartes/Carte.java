@@ -12,9 +12,13 @@ public class Carte implements Comparable {
     ValeurCartes valeur;
     private boolean visible;
 
+<<<<<<< HEAD
     public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) throws ConstructeurException {
 
         if (valeur == null || sorte == null){throw new ConstructeurException("Ça chie ben raide");}
+=======
+    public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) {
+>>>>>>> main
         this.valeur = valeur;
         this.sorte = sorte;
     }
