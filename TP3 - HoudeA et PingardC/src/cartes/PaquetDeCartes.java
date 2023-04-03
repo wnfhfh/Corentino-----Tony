@@ -3,7 +3,7 @@ package cartes;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PaquetDeCartes {
+public class PaquetDeCartes implements Cloneable {
     ArrayList<Carte> paquet = new ArrayList<>();
     public final int NBR_ECHANGE = 52;
 
@@ -19,6 +19,7 @@ public class PaquetDeCartes {
 
             Random rand = new Random();
             int randomNb = rand.nextInt(0, paquet.size());
+
 
             paquet.set(i, paquet.get(randomNb));
             paquet.set(randomNb, cTemp);
@@ -53,5 +54,18 @@ public class PaquetDeCartes {
         return paquet.size();
     }
 
-    //TODO methode validerPosition
+    @Override
+    public Object clone() {
+        PaquetDeCartes o = null;
+        try {
+            o = (PaquetDeCartes) super.clone();
+        } catch (
+                CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+        return o;
+    }
 }
+
+//TODO methode validerPosition
+

@@ -10,8 +10,9 @@ public class Carte implements Comparable {
     ValeurCartes valeur;
     private boolean visible;
 
-    public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) throws exceptions.ConstructeurException {
-
+    public Carte(cartes.ValeurCartes valeur, cartes.SorteCartes sorte) {
+        this.valeur = valeur;
+        this.sorte = sorte;
     }
 
     public boolean estVisible() {
