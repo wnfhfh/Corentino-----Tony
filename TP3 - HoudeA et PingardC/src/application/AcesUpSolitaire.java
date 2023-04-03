@@ -94,7 +94,7 @@ public class AcesUpSolitaire extends JFrame {
      * Dessine uniquement les colonnes qui ont été mis à jour
      */
     private void dessinerLesColonneDeCartes() {
-        for (int idxColonne = 0; idxColonne < LogiqueAcesUp.NB_COLONNES_DE_CARTES; idxColonne++) {
+        for (int idxColonne = 0; idxColonne < (LogiqueAcesUp.NB_COLONNES_DE_CARTES - 1); idxColonne++) {
             if (logiqueAcesUp.colonneEstMAJ(idxColonne)) {
                 dessinerColonneCarte(idxColonne);
             }
@@ -164,7 +164,7 @@ public class AcesUpSolitaire extends JFrame {
         PaquetDeCartes paquetPourCetteRonde = (PaquetDeCartes) paquetDeCartes.clone();
 
         if (!modeTest) {
-            paquetPourCetteRonde.brasser();
+            paquetPourCetteRonde.melanger();
         }
         logiqueAcesUp = new LogiqueAcesUp(paquetPourCetteRonde);
         dessinerPioche();

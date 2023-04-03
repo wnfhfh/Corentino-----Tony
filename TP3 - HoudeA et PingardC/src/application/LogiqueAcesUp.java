@@ -36,14 +36,17 @@ public class LogiqueAcesUp implements Serializable {
      *               La logique de jeu ne mélange pas le paquet
      */
     public LogiqueAcesUp(PaquetDeCartes paquet) {
-        //todo public LogiqueAcesUp(PaquetDeCartes paquet)
+        this.pioche = new Pioche(paquet);
+        initialiserLesColonnesDeCartes();
     }
 
     /**
      * Initialise les colonnes de cartes et fait la première pige dans la pioche pour toutes les colonnes.
      */
     private void initialiserLesColonnesDeCartes() {
-        //todo private void initialiserLesColonnesDeCartes()
+        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+            colonneCartes[i] = new ColonneCartes(pioche);
+        }
     }
 
     /**
@@ -52,8 +55,7 @@ public class LogiqueAcesUp implements Serializable {
      * @return <b>true</b> si la pioche est vide
      */
     public boolean piocheEstVide() {
-        //todo public boolean piocheEstVide()
-        return true;
+        return pioche.isEmpty();
     }
 
     /**
@@ -62,8 +64,7 @@ public class LogiqueAcesUp implements Serializable {
      * @return le nombre de cartes dans la pioche du jeu
      */
     public int nbCartesPioche() {
-        //todo public int nbCartesPioche()
-        return 0;
+        return pioche.size();
     }
 
     /**
@@ -75,8 +76,7 @@ public class LogiqueAcesUp implements Serializable {
      * est invalide, cette méthode retourne <i>null</i>.
      */
     public ArrayList<Carte> getColonneCartes(int idxColonne) {
-        //todo public ArrayList<Carte> getColonneCartes(int idxColonne)
-        return null;
+        return colonneCartes[idxColonne].getListe();
     }
 
     /**
@@ -87,26 +87,27 @@ public class LogiqueAcesUp implements Serializable {
      * @return <b>true</b> si la colonne dont le numéro est passé en paramètre est à redessiner puisqu'elle a changé.
      */
     public boolean colonneEstMAJ(int idxColonne) {
-        //todo public boolean colonneEstMAJ(int idxColonne)
-        return true;
+        return colonneCartes[idxColonne].isColonneADessiner();
     }
 
     /**
-     * Indique à la logique que la colonne dont le numéro est passé en paramètre est a été redessinée.
+     * Indique à la logique que la colonne dont le numéro est passé en paramètre est a été redessinée. todo understand this sentence
      * La colonne doit alors mettre à jour son état indiquant que l'affichage est à jour et n'a pas être
      * affiché tant que celle-ci n'a pas été modifiée.
      *
      * @param idxColonne Index de la colonne
      */
     public void setColonneCommeDessine(int idxColonne) {
-        //todo public void setColonneCommeDessine(int idxColonne)
+        colonneCartes[idxColonne].setColonneADessiner(true);
     }
 
     /**
      * Pour chaque colonne du jeu, une carte est pigé dans la pioche pour l'ajouter èa la colonne
      */
     public void piger() {
-        //todo public void piger()
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
+            colonneCartes[i].ajouterCarteDessus(pioche.piger());
+        }
     }
 
     /**
@@ -117,8 +118,13 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne le numéro de la colonne d'où on veut déplacer la carte.
      */
     public void deplacerCarte(int idxColonne) {
-        // TODO public void deplacerCarte(int idxColonne)
-
+        Carte deplacee = colonneCartes[idxColonne].retirerDessus();
+        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+            if (colonneCartes[i].estVide()) {
+                colonneCartes[i].ajouterCarteDessus(deplacee);
+                break;
+            }
+        }
     }
 
     /**
@@ -128,7 +134,11 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne le numéro de la colonne d'où on veut enlever la carte.
      */
     public void enleverColonne(int idxColonne) {
-        // TODO public void enleverColonne(int idxColonne)
+        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+            if (i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+                colonneCartes[idxColonne].retirerDessus();
+            }
+        }
     }
 
     /**
@@ -140,7 +150,9 @@ public class LogiqueAcesUp implements Serializable {
      * @return <b>true</b> si la carte1 est plus petite que la carte2.
      */
     private boolean estMemeSorteEtPlusPetite(Carte carte1, Carte carte2) {
-        //todo private boolean estMemeSorteEtPlusPetite(Carte carte1, Carte carte2)
+        if (carte1.compareTo(carte2) < 0) {
+            return true;
+        }
         return false;
     }
 
@@ -152,8 +164,14 @@ public class LogiqueAcesUp implements Serializable {
      * @return boolean, vrai si on a une victoire.
      */
     public boolean partieEstGagne() {
-        //todo public boolean partieEstGagne()
-        return true;
+        boolean estGagne = true;
+
+        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+            if (colonneCartes[i].voirCarteDessus().getValeur() != ValeurCartes.V_AS || colonneCartes[i].nbCartesColonne() != 1) {
+                estGagne = false;
+            }
+        }
+        return estGagne;
     }
 
     /**
@@ -169,10 +187,13 @@ public class LogiqueAcesUp implements Serializable {
      * @return boolean <b>true</b> s'il n'est pas possible de jouer un autre coup,
      * donc que la partie est terminée.
      */
-    // TODO (2) Complétez le code de la méthode : partieTerminer
     public boolean partieEstTermine() {
-        //todo public boolean partieEstTermine()
-        return false;
+        for (int i = 0; i < colonneCartes.length - 1; i++) {
+            if (carteDeLaColonneDeplacable(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -188,7 +209,11 @@ public class LogiqueAcesUp implements Serializable {
      * <b>false</b> si la colonne est vide ou on ne peut ni retirer et ni déplacer la carte.
      */
     private boolean carteDeLaColonneDeplacable(int idxColonne) {
-        //todo private boolean carteDeLaColonneDeplacable(int idxColonne)
+        for (int i = 0; i < colonneCartes.length - 1; i++) {
+            if (colonneCartes[i].estVide() || i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -197,6 +222,8 @@ public class LogiqueAcesUp implements Serializable {
      * Cette méthode peut être utilisée pour recommencer la partie.
      */
     public void setAllColonneADessiner() {
-        //todo public void setAllColonneADessiner()
+        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+            setColonneCommeDessine(i);
+        }
     }
 }
