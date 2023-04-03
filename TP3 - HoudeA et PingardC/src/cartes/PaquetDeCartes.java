@@ -8,9 +8,18 @@ public class PaquetDeCartes implements Cloneable {
     public final int NBR_ECHANGE = 52;
 
     public PaquetDeCartes(ArrayList<Carte> cartes) {
+        this.paquet = paquet;
     }
 
     public PaquetDeCartes() {
+        ValeurCartes[] valeurCartes = ValeurCartes.values();
+        SorteCartes[] sorteCartes = SorteCartes.values();
+
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                paquet.add(new Carte(valeurCartes[i], sorteCartes[j]));
+            }
+        }
     }
 
     public void melanger() {

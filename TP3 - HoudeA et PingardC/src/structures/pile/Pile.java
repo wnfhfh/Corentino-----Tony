@@ -1,5 +1,7 @@
 package structures.pile;
 
+import java.io.IOException;
+
 public class Pile {
     private NoeudPile sommet;
     private int taille = 0;
@@ -13,11 +15,14 @@ public class Pile {
         } else {
             sommet = new NoeudPile(o, sommet);
         }
-
         taille++;
     }
 
     public Object pop() {
+        if (sommet == null) {
+            return null;
+        }
+
         Object popped = sommet.getElement();
 
         sommet = sommet.getPrecedent();
@@ -28,6 +33,9 @@ public class Pile {
     }
 
     public Object peek() {
+        if (sommet == null) {
+            return null;
+        }
         return sommet.getElement();
     }
 

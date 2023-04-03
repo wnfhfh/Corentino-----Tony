@@ -44,7 +44,7 @@ public class LogiqueAcesUp implements Serializable {
      * Initialise les colonnes de cartes et fait la première pige dans la pioche pour toutes les colonnes.
      */
     private void initialiserLesColonnesDeCartes() {
-        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             colonneCartes[i] = new ColonneCartes(pioche);
         }
     }
@@ -119,7 +119,7 @@ public class LogiqueAcesUp implements Serializable {
      */
     public void deplacerCarte(int idxColonne) {
         Carte deplacee = colonneCartes[idxColonne].retirerDessus();
-        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             if (colonneCartes[i].estVide()) {
                 colonneCartes[i].ajouterCarteDessus(deplacee);
                 break;
@@ -134,7 +134,7 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne le numéro de la colonne d'où on veut enlever la carte.
      */
     public void enleverColonne(int idxColonne) {
-        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             if (i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
                 colonneCartes[idxColonne].retirerDessus();
             }
@@ -166,7 +166,7 @@ public class LogiqueAcesUp implements Serializable {
     public boolean partieEstGagne() {
         boolean estGagne = true;
 
-        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             if (colonneCartes[i].voirCarteDessus().getValeur() != ValeurCartes.V_AS || colonneCartes[i].nbCartesColonne() != 1) {
                 estGagne = false;
             }
@@ -188,7 +188,7 @@ public class LogiqueAcesUp implements Serializable {
      * donc que la partie est terminée.
      */
     public boolean partieEstTermine() {
-        for (int i = 0; i < colonneCartes.length - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             if (carteDeLaColonneDeplacable(i)) {
                 return false;
             }

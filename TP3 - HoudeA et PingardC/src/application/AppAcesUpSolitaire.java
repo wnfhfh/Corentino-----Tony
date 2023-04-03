@@ -12,7 +12,7 @@ public class AppAcesUpSolitaire {
     public AppAcesUpSolitaire() {
 
         //new AcesUpSolitaire(JeuxDeCartes.getJeuPresqueFini(), false);
-        new AcesUpSolitaire(JeuxDeCartes.getJeuNormal(), false);
+        new AcesUpSolitaire(JeuxDeCartes.getJeuNormal(), true);
     }
 
     /**

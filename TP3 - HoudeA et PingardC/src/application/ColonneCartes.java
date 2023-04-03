@@ -16,7 +16,7 @@ public class ColonneCartes implements Serializable {
     /**
      * Structure de données qui conserve les cartes dans la colonne
      */
-    private Pile pileDeCartes;
+    private Pile pileDeCartes = new Pile();
     /**
      * La pioche dans laquelle on pige dans la partie.
      * Normalement, c'est la même pour toutes les colonnes
