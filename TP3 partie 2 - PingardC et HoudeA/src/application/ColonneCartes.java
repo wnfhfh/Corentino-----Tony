@@ -150,7 +150,7 @@ public class ColonneCartes implements Serializable {
         }
 
         for (int i = 0; pileDeCartes.size() != listeCartes.size(); i++) {
-            pileDeCartes.push(listeCartes.get(i));
+            pileDeCartes.push(listeCartes.get(listeCartes.size()-1-i));
 
         }
         return listeCartes;

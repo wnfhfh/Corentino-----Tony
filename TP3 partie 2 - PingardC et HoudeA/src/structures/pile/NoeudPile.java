@@ -9,7 +9,7 @@ public class NoeudPile {
     }
 
     public NoeudPile(Object o, NoeudPile n) {
-        precedent = n;
+        setPrecedent(n);
         element = o;
     }
 

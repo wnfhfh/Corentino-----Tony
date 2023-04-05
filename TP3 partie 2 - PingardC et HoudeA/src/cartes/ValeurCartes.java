@@ -1,7 +1,7 @@
 package cartes;
 
 public enum ValeurCartes {
-    V_AS("A", 1),
+    V_AS("A", 14),
     V_2("2", 2),
     V_3("3", 3),
     V_4("4", 4),
@@ -16,8 +16,15 @@ public enum ValeurCartes {
     V_KING("K", 13);
 
     public String symbole;
+    private int valeurDecarte;
 
     ValeurCartes(String symbole, int valeur) {
         this.symbole = symbole;
+        this.valeurDecarte = valeur;
+
+    }
+
+    public int getValeurDecarte() {
+        return valeurDecarte;
     }
 }

@@ -10,17 +10,9 @@ import cartes.PaquetDeCartes;
  */
 public class AppAcesUpSolitaire {
     public AppAcesUpSolitaire() {
-
-        //new AcesUpSolitaire(JeuxDeCartes.getJeuPresqueFini(), false);
-        new AcesUpSolitaire(JeuxDeCartes.getJeuNormal(), false);
-    }
-
-    /**
-     * Créer un paquet de cartes pour les tests et la retourne
-     * @return un jeu de carte truqué ou non pour les tests
-     */
-    private PaquetDeCartes getJeuDeCartePourTests() {
-        return (JeuxDeCartes.getJeuPresqueFini());
+        PaquetDeCartes pq = JeuxDeCartes.getJeuPresqueFini();
+        new AcesUpSolitaire(pq, true);
+        //new AcesUpSolitaire(JeuxDeCartes.getJeuNormal(), true);
     }
 
     public static void main(String[] args) {

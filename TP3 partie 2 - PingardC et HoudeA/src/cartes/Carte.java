@@ -63,7 +63,7 @@ public class Carte implements Comparable {
 
     @Override
     public String toString() {
-        return getValeurSymbole();
+        return getValeurSymbole()+getSorteSymbole();
     }
 
     public String toStringCarte() {
@@ -83,7 +83,14 @@ public class Carte implements Comparable {
                 return 0;
             }
         }
+        if (this.valeur.getValeurDecarte() == ((Carte) o).getValeur().getValeurDecarte())
+            return 0;
+        else if (this.valeur.getValeurDecarte() > ((Carte) o).getValeur().getValeurDecarte()){
+    return 1;
+        }
+        else return -1;
 
-        return this.valeur.compareTo(((Carte) o).getValeur());
+        //return this.valeur.compareTo(((Carte) o).getValeur());
+        //return this.valeur.getValeurDecarte() - ((Carte) o).getValeur().getValeurDecarte();
     }
 }

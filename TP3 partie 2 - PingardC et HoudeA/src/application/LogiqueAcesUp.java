@@ -138,7 +138,8 @@ public class LogiqueAcesUp implements Serializable {
      */
     public void enleverColonne(int idxColonne) {
         for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
-            if (!colonneCartes[i].estVide() && i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+            if (!colonneCartes[i].estVide() && i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus())
+                    > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
                 colonneCartes[idxColonne].retirerDessus();
             }
         }

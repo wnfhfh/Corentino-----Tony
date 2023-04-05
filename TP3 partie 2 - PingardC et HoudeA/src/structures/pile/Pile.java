@@ -41,7 +41,7 @@ public class Pile {
     }
 
     public boolean empty() {
-        return taille == 0;
+        return size() == 0;
     }
 
     public int size() {

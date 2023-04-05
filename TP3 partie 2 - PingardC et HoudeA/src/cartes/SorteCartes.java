@@ -10,7 +10,7 @@ import static java.awt.Color.RED;
 public enum SorteCartes {
     COEUR('♥', RED),
 
-    CARREAU('\u2666', RED),
+    CARREAU('♦', RED),
 
     PIQUE('♠', BLACK),
 
