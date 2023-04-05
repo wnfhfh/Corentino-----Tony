@@ -1,6 +1,7 @@
 package structures.pile;
 
 import java.io.IOException;
+import java.util.Stack;
 
 public class Pile {
     private NoeudPile sommet;

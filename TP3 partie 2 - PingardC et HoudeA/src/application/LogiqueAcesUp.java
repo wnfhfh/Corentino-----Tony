@@ -46,6 +46,7 @@ public class LogiqueAcesUp implements Serializable {
     private void initialiserLesColonnesDeCartes() {
         for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             colonneCartes[i] = new ColonneCartes(pioche);
+            colonneCartes[i].setColonneADessiner(true);
         }
     }
 
@@ -98,7 +99,7 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne Index de la colonne
      */
     public void setColonneCommeDessine(int idxColonne) {
-        colonneCartes[idxColonne].setColonneADessiner(true);
+        colonneCartes[idxColonne].setColonneADessiner(false);
     }
 
     /**
@@ -118,11 +119,13 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne le numéro de la colonne d'où on veut déplacer la carte.
      */
     public void deplacerCarte(int idxColonne) {
-        Carte deplacee = colonneCartes[idxColonne].retirerDessus();
-        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
-            if (colonneCartes[i].estVide()) {
-                colonneCartes[i].ajouterCarteDessus(deplacee);
-                break;
+        if (!colonneCartes[idxColonne].estVide()) {
+            Carte deplacee = colonneCartes[idxColonne].retirerDessus();
+            for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
+                if (colonneCartes[i].estVide()) {
+                    colonneCartes[i].ajouterCarteDessus(deplacee);
+                    break;
+                }
             }
         }
     }
@@ -135,7 +138,7 @@ public class LogiqueAcesUp implements Serializable {
      */
     public void enleverColonne(int idxColonne) {
         for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
-            if (i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+            if (!colonneCartes[i].estVide() && i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
                 colonneCartes[idxColonne].retirerDessus();
             }
         }
@@ -166,9 +169,11 @@ public class LogiqueAcesUp implements Serializable {
     public boolean partieEstGagne() {
         boolean estGagne = true;
 
-        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
-            if (colonneCartes[i].voirCarteDessus().getValeur() != ValeurCartes.V_AS || colonneCartes[i].nbCartesColonne() != 1) {
-                estGagne = false;
+        if (pioche.size() == 0) {
+            for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
+                if (colonneCartes[i].voirCarteDessus() != null && colonneCartes[i].voirCarteDessus().getValeur() != ValeurCartes.V_AS || colonneCartes[i].nbCartesColonne() != 1) {
+                    estGagne = false;
+                }
             }
         }
         return estGagne;
@@ -193,7 +198,7 @@ public class LogiqueAcesUp implements Serializable {
                 return false;
             }
         }
-        return true;
+        return pioche.size() == 0;
     }
 
 
@@ -210,7 +215,7 @@ public class LogiqueAcesUp implements Serializable {
      */
     private boolean carteDeLaColonneDeplacable(int idxColonne) {
         for (int i = 0; i < colonneCartes.length - 1; i++) {
-            if (colonneCartes[i].estVide() || i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+            if (colonneCartes[i].estVide() && i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
                 return true;
             }
         }
@@ -222,7 +227,7 @@ public class LogiqueAcesUp implements Serializable {
      * Cette méthode peut être utilisée pour recommencer la partie.
      */
     public void setAllColonneADessiner() {
-        for (int i = 0; i < NB_COLONNES_DE_CARTES - 1; i++) {
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
             setColonneCommeDessine(i);
         }
     }

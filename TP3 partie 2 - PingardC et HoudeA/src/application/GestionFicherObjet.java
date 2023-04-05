@@ -16,6 +16,7 @@ public class GestionFicherObjet {
      * Répertoire par défaut ou les fichiers sont sauvés.
      */
     public static String PATH = System.getProperty("user.dir") + FILE_PATH_SEPARATOR + "_fichiers" + FILE_PATH_SEPARATOR;
+
     /**
      * Permet de faire l'enregistrement d'objets Serializable.
      *
@@ -24,7 +25,17 @@ public class GestionFicherObjet {
      * @throws IOException se déclenche s'il a une erreur dans l'opération d'écriture
      */
     public static void enregistrerObjet(File nomFichier, Object objet) throws IOException {
-        // TODO Complétez le code de la méthode : enregistrerObjet(File nomFichier, Object objet)
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(nomFichier);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            objectOutputStream.writeObject(objet);
+
+            objectOutputStream.flush();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -38,6 +49,16 @@ public class GestionFicherObjet {
      */
     public static Object lireObjet(File nomFichier) throws IOException, ClassNotFoundException {
         // TODO  Complétez le code de la méthode : Object lireObjet(File nomFichier)
-        return null;
+        Object objet = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(nomFichier);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            objet = objectInputStream.readObject();
+
+            fileInputStream.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return objet;
     }
 }

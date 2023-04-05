@@ -63,12 +63,7 @@ public class Carte implements Comparable {
 
     @Override
     public String toString() {
-        return "Carte{" +
-                "IMAGE_DOS=" + IMAGE_DOS +
-                ", sorte=" + sorte +
-                ", valeur=" + valeur +
-                ", visible=" + visible +
-                '}';
+        return getValeurSymbole();
     }
 
     public String toStringCarte() {
@@ -83,6 +78,12 @@ public class Carte implements Comparable {
 
     @Override
     public int compareTo(Object o) {
+        if (this == null || o == null){
+            if (this == null || o == null) {
+                return 0;
+            }
+        }
+
         return this.valeur.compareTo(((Carte) o).getValeur());
     }
 }

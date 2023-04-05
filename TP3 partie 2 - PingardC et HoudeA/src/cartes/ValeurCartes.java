@@ -18,5 +18,6 @@ public enum ValeurCartes {
     public String symbole;
 
     ValeurCartes(String symbole, int valeur) {
+        this.symbole = symbole;
     }
 }

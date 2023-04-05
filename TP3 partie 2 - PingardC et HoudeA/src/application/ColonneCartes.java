@@ -6,6 +6,7 @@ import structures.pile.Pile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Colonne de cartes du jeu AcesUpSolitaire.
@@ -36,7 +37,6 @@ public class ColonneCartes implements Serializable {
      * @param pioche la référence à la pioche utilisée pour le
      */
     public ColonneCartes(Pioche pioche) {
-        //TODO public ColonneCartes(Pioche pioche)
         this.pioche = pioche;
         pigerEtAjouterCarte();
     }
@@ -63,6 +63,7 @@ public class ColonneCartes implements Serializable {
      */
     public void ajouterCarteDessus(Carte carte) {
         pileDeCartes.push(carte);
+        colonneADessiner = true;
     }
 
     /**
@@ -117,6 +118,7 @@ public class ColonneCartes implements Serializable {
      * @return la carte du dessus sans toutefois la retirer. todo wtf is with this comment
      */
     public Carte retirerDessus() {
+        colonneADessiner = true;
         return (Carte) pileDeCartes.pop();
     }
 
@@ -141,12 +143,15 @@ public class ColonneCartes implements Serializable {
         ArrayList listeCartes = new ArrayList<Carte>();
 
         while (!pileDeCartes.empty()) {
-            listeCartes.add(pileDeCartes.pop());
+            Carte c = (Carte) pileDeCartes.pop();
+            if (c != null) {
+                listeCartes.add(c);
+            }
         }
 
-        for (int i = 0; i < listeCartes.size(); i++) {
-            pileDeCartes.push(listeCartes.get(listeCartes.size()));
-            listeCartes.remove(listeCartes.size());
+        for (int i = 0; pileDeCartes.size() != listeCartes.size(); i++) {
+            pileDeCartes.push(listeCartes.get(i));
+
         }
         return listeCartes;
     }

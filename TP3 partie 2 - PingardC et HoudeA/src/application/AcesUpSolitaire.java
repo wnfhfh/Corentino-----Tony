@@ -94,7 +94,7 @@ public class AcesUpSolitaire extends JFrame {
      * Dessine uniquement les colonnes qui ont été mis à jour
      */
     private void dessinerLesColonneDeCartes() {
-        for (int idxColonne = 0; idxColonne < (LogiqueAcesUp.NB_COLONNES_DE_CARTES - 1); idxColonne++) {
+        for (int idxColonne = 0; idxColonne < (LogiqueAcesUp.NB_COLONNES_DE_CARTES); idxColonne++) {
             if (logiqueAcesUp.colonneEstMAJ(idxColonne)) {
                 dessinerColonneCarte(idxColonne);
             }

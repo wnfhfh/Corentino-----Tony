@@ -18,10 +18,11 @@ public enum SorteCartes {
 
     public char symbole;
 
-    public Color couleur;
+    public final Color couleur;
 
     SorteCartes(char symbole, Color couleur) {
         this.couleur = couleur;
+        this.symbole = symbole;
     }
 
     public Color getCouleur() {
