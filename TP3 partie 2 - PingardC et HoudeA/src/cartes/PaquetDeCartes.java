@@ -40,7 +40,7 @@ public class PaquetDeCartes implements Cloneable {
     }
 
     public boolean isEmpty() {
-        return paquet.size() == 0;
+        return paquet.isEmpty();
     }
 
     private void permuter(int pos1, int pos2) {
@@ -76,5 +76,4 @@ public class PaquetDeCartes implements Cloneable {
     }
 }
 
-//TODO methode validerPosition
 

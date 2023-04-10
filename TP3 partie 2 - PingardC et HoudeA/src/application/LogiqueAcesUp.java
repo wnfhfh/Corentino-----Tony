@@ -119,14 +119,19 @@ public class LogiqueAcesUp implements Serializable {
      * @param idxColonne le numéro de la colonne d'où on veut déplacer la carte.
      */
     public void deplacerCarte(int idxColonne) {
-        if (!colonneCartes[idxColonne].estVide()) {
-            Carte deplacee = colonneCartes[idxColonne].retirerDessus();
-            for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
-                if (colonneCartes[i].estVide()) {
-                    colonneCartes[i].ajouterCarteDessus(deplacee);
-                    break;
-                }
+        int colonneOuDeplacer = -1;
+        boolean aColonneVide = false;
+        for (int i = 0; i < NB_COLONNES_DE_CARTES; i++) {
+            if (colonneCartes[i].estVide()) {
+                aColonneVide = true;
+                colonneOuDeplacer = i;
+                break;
             }
+        }
+
+        if (!colonneCartes[idxColonne].estVide() && aColonneVide) {
+            Carte deplacee = colonneCartes[idxColonne].retirerDessus();
+            colonneCartes[colonneOuDeplacer].ajouterCarteDessus(deplacee);
         }
     }
 
@@ -154,7 +159,7 @@ public class LogiqueAcesUp implements Serializable {
      * @return <b>true</b> si la carte1 est plus petite que la carte2.
      */
     private boolean estMemeSorteEtPlusPetite(Carte carte1, Carte carte2) {
-        if (carte1.compareTo(carte2) < 0) {
+        if (carte1.compareTo(carte2) > 0) {
             return true;
         }
         return false;
@@ -215,8 +220,9 @@ public class LogiqueAcesUp implements Serializable {
      * <b>false</b> si la colonne est vide ou on ne peut ni retirer et ni déplacer la carte.
      */
     private boolean carteDeLaColonneDeplacable(int idxColonne) {
-        for (int i = 0; i < colonneCartes.length - 1; i++) {
-            if (colonneCartes[i].estVide() && i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
+        for (int i = 0; i < colonneCartes.length; i++) {
+            if (colonneCartes[i].estVide()) return true;
+            if (i != idxColonne && colonneCartes[i].voirCarteDessus().compareTo(colonneCartes[idxColonne].voirCarteDessus()) > 0 && colonneCartes[i].voirCarteDessus().getSorte() == colonneCartes[idxColonne].voirCarteDessus().getSorte()) {
                 return true;
             }
         }
