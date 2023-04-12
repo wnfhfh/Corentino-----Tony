@@ -25,6 +25,7 @@ public class GestionFicherObjet {
      * @throws IOException se déclenche s'il a une erreur dans l'opération d'écriture
      */
     public static void enregistrerObjet(File nomFichier, Object objet) throws IOException {
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(nomFichier);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -35,6 +36,7 @@ public class GestionFicherObjet {
             fileOutputStream.close();
         } catch (IOException e) {
             System.out.println(e);
+            throw e;
         }
     }
 
@@ -50,6 +52,7 @@ public class GestionFicherObjet {
     public static Object lireObjet(File nomFichier) throws IOException, ClassNotFoundException {
         // TODO  Complétez le code de la méthode : Object lireObjet(File nomFichier)
         Object objet = null;
+
         try {
             FileInputStream fileInputStream = new FileInputStream(nomFichier);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -58,6 +61,7 @@ public class GestionFicherObjet {
             fileInputStream.close();
         } catch (Exception e) {
             System.out.println(e);
+            throw e;
         }
         return objet;
     }
