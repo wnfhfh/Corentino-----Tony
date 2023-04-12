@@ -1,6 +1,8 @@
 package cartes;
 
-public enum ValeurCartes {
+import java.io.Serializable;
+
+public enum ValeurCartes implements Serializable {
     V_AS("A", 14),
     V_2("2", 2),
     V_3("3", 3),

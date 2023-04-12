@@ -2,6 +2,7 @@ package application;
 
 import cartes.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
  * @author Robert Aubé
  * @version 1.0 (Date de création: 2023-03-28)
  */
-public class JeuxDeCartes {
+public class JeuxDeCartes implements Serializable {
     private static final Carte[]quatreAs = {
             new Carte(ValeurCartes.V_AS, SorteCartes.COEUR),
             new Carte(ValeurCartes.V_AS, SorteCartes.CARREAU),

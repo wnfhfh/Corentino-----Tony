@@ -1,10 +1,11 @@
 package cartes;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Stack;
 
-public class Carte implements Comparable {
+public class Carte implements Comparable, Serializable {
     public final char IMAGE_DOS = 's';
     SorteCartes sorte;
     ValeurCartes valeur;
@@ -78,19 +79,14 @@ public class Carte implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if (this == null || o == null){
             if (this == null || o == null) {
                 return 0;
             }
-        }
         if (this.valeur.getValeurDecarte() == ((Carte) o).getValeur().getValeurDecarte())
             return 0;
         else if (this.valeur.getValeurDecarte() > ((Carte) o).getValeur().getValeurDecarte()){
     return 1;
         }
         else return -1;
-
-        //return this.valeur.compareTo(((Carte) o).getValeur());
-        //return this.valeur.getValeurDecarte() - ((Carte) o).getValeur().getValeurDecarte();
     }
 }

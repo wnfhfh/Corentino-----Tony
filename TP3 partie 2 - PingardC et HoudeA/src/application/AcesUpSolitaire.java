@@ -224,12 +224,12 @@ public class AcesUpSolitaire extends JFrame {
         if (ok == JFileChooser.APPROVE_OPTION) {
             try {
                 //todo lire le fichier du jeu à l'aide de la classe GestionFicherObjet
-
+                logiqueAcesUp = (LogiqueAcesUp) GestionFicherObjet.lireObjet(jFC.getSelectedFile());
                 logiqueAcesUp.setAllColonneADessiner();
                 dessinerLesColonneDeCartes();
                 dessinerPioche();
                 //todo décommenter le try catch pour que ce soit opérationnel
-                GestionFicherObjet.lireObjet(jFC.getSelectedFile());
+
             } catch (IOException e) {
                 System.out.println("Erreur : " + e.getMessage());
                 showMessage("Erreur de lecture",

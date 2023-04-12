@@ -2,7 +2,9 @@ package cartes;
 
 import structures.pile.Pile;
 
-public class Pioche {
+import java.io.Serializable;
+
+public class Pioche implements Serializable {
     private Pile pioche = new Pile();
 
     public Pioche(PaquetDeCartes paquet) {

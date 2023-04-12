@@ -1,9 +1,10 @@
 package cartes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PaquetDeCartes implements Cloneable {
+public class PaquetDeCartes implements Cloneable, Serializable {
     ArrayList<Carte> paquet = new ArrayList<>();
     public final int NBR_ECHANGE = 52;
 

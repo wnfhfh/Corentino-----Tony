@@ -1,9 +1,12 @@
 package structures.pile;
 
+import com.sun.source.doctree.SerialTree;
+
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Stack;
 
-public class Pile {
+public class Pile implements Serializable {
     private NoeudPile sommet;
     private int taille = 0;
 

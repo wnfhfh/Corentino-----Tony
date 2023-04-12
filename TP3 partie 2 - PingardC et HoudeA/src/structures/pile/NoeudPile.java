@@ -1,6 +1,8 @@
 package structures.pile;
 
-public class NoeudPile {
+import java.io.Serializable;
+
+public class NoeudPile implements Serializable {
     private Object element;
     private NoeudPile precedent = null;
 
