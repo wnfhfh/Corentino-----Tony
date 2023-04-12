@@ -50,10 +50,7 @@ public class ColonneCartes implements Serializable {
         if (pioche.size() != 0) {
             pileDeCartes.push(pioche.piger());
         }
-        if (colonneADessiner) {
-            return true;
-        }
-        return false;
+        return colonneADessiner;
     }
 
     /**
@@ -72,10 +69,7 @@ public class ColonneCartes implements Serializable {
      * @return true si la colonne est vide
      */
     public boolean estVide() {
-        if (pileDeCartes.size() == 0) {
-            return true;
-        }
-        return false;
+        return pileDeCartes.size() == 0;
     }
 
     /**
@@ -150,8 +144,7 @@ public class ColonneCartes implements Serializable {
         }
 
         for (int i = 0; pileDeCartes.size() != listeCartes.size(); i++) {
-            pileDeCartes.push(listeCartes.get(listeCartes.size()-1-i));
-
+            pileDeCartes.push(listeCartes.get(listeCartes.size() - 1 - i));
         }
         return listeCartes;
     }

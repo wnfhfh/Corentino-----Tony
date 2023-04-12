@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import static java.io.FileDescriptor.out;
 
 /**
  * Application de jeu de Aces Up Solitaire
@@ -194,11 +197,11 @@ public class AcesUpSolitaire extends JFrame {
         int ok = jFC.showSaveDialog(this);
 
         if (ok == JFileChooser.APPROVE_OPTION) {
-         //   try {
-                //todo enregistrer le jeu à l'aide de la classe GestionFicherObjet
+            //   try {
+            //todo enregistrer le jeu à l'aide de la classe GestionFicherObjet
 
-                //todo décommenter le try catch pour que ce soit opérationnel
-                showMessage("Enregistrement réussi", "Enregistrement réussi dans \n" + jFC.getSelectedFile(), JOptionPane.INFORMATION_MESSAGE);
+            //todo décommenter le try catch pour que ce soit opérationnel
+            showMessage("Enregistrement réussi", "Enregistrement réussi dans \n" + jFC.getSelectedFile(), JOptionPane.INFORMATION_MESSAGE);
                 /*
             } catch (IOException e) {
                 System.out.println("Erreur : " + e.getMessage());
@@ -219,15 +222,15 @@ public class AcesUpSolitaire extends JFrame {
         int ok = jFC.showOpenDialog(this);
 
         if (ok == JFileChooser.APPROVE_OPTION) {
-            // try {
+            //try {
                 //todo lire le fichier du jeu à l'aide de la classe GestionFicherObjet
 
                 logiqueAcesUp.setAllColonneADessiner();
                 dessinerLesColonneDeCartes();
                 dessinerPioche();
                 //todo décommenter le try catch pour que ce soit opérationnel
-                /*
-            } catch (IOException e) {
+
+           /* } catch (IOException e) {
                 System.out.println("Erreur : " + e.getMessage());
                 showMessage("Erreur de lecture",
                         "Erreur: Il n'est pas possible de lire ce fichier:\n" + jFC.getSelectedFile(),
@@ -238,8 +241,7 @@ public class AcesUpSolitaire extends JFrame {
                         "Ce fichier ne peut être chargé dans la classe du jeu:\n" + jFC.getSelectedFile(),
                         JOptionPane.ERROR_MESSAGE);
             }
-
-                 */
+            */
         }
     }
 
